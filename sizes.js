@@ -22,6 +22,19 @@ const sizes = [
   { name: "70J", number: 195 },
   { name: "70K", number: 278 },
   { name: "70L", number: 279 },
+  //75
+  { name: "75A", number: 155 },
+  { name: "75B", number: 159 },
+  { name: "75C", number: 0 },
+  { name: "75D", number: 0 },
+  { name: "75E", number: 0 },
+  { name: "75F", number: 0 },
+  { name: "75G", number: 0 },
+  { name: "75H", number: 0 },
+  { name: "75I", number: 0 },
+  { name: "75J", number: 0 },
+  { name: "75K", number: 0 },
+  { name: "75L", number: 0 },
 ];
 
 module.exports = {
