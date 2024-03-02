@@ -12,28 +12,61 @@ const gorteks =
 
 const getUnderbustIndex = (underbust) => {
   let index;
-  for (item of underbustArr) {
+  for (let item of underbustArr) {
     if (item.includes(underbust) === true) {
-      return underbustArr.indexOf(item);
+      index = underbustArr.indexOf(item);
     }
   }
-};
-
-const getUnderBustName = (index) => {
-  return underbustNames[index];
+  return index;
 };
 
 const getUnderbustaArrayToSearch = (index) => {
   return underbustSpanArr[index];
 };
 
-// ----- test ------
+const getBustIndex = (bust, underbustaArrayToSearch) => {
+  let index = [];
+  for (let item of underbustaArrayToSearch) {
+    if (item != 0) {
+      if (item.includes(bust) === true) {
+        index.push(underbustaArrayToSearch.indexOf(item));
+      }
+    }
+  }
+  return index;
+};
 
-const underbust = 84;
+const getUnderBustName = (index) => {
+  return underbustNames[index];
+};
 
-let index = getUnderbustIndex(underbust);
-let tableToSearch = getUnderbustaArrayToSearch(index);
+const getBustNames = (index) => {
+  const result = [];
+  index.forEach((item) => {
+    result.push(bustNames[item]);
+  });
+  return result;
+};
 
-console.table(tableToSearch);
+const combineSizeName = (underbustSize, bustSize) => {
+  let result = [];
+  for (let size of bustSize) {
+    result.push(underbustSize + size);
+  }
+  return result;
+};
 
-// console.table(underbustSpanArr);
+const detectBraSizeName = (underbust, bust) => {
+  const underbustIndex = getUnderbustIndex(underbust);
+
+  const underbustaArrayToSearch = getUnderbustaArrayToSearch(underbustIndex);
+  const bustIndex = getBustIndex(bust, underbustaArrayToSearch);
+
+  const underbustSize = getUnderBustName(underbustIndex);
+  const bustSize = getBustNames(bustIndex, underbustaArrayToSearch);
+
+  const detectedNames = combineSizeName(underbustSize, bustSize);
+  return detectedNames;
+};
+
+console.log(detectBraSizeName(70, 90));
