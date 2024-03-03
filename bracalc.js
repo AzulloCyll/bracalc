@@ -34,7 +34,7 @@ const detectBraSizeName = (underbust, bust) => {
   return detectedNames;
 };
 
-const detectSmallerSizeName = (underbust, bust) => {
+const detectBiggerSizeName = (underbust, bust) => {
   let underbustIndex = getUnderbustIndex(underbust, underbustArr);
   underbustIndex++;
   bust += 3;
@@ -55,14 +55,37 @@ const detectSmallerSizeName = (underbust, bust) => {
   }
 };
 
-const underbust = 70
-const bust = 91
+const detectSmallerSizeName = (underbust, bust) => {
+  let underbustIndex = getUnderbustIndex(underbust, underbustArr);
+  underbustIndex--;
+  bust -= 3;
+
+  if (underbustIndex >= 0) {
+    const underbustaArrayToSearch = getUnderbustaArrayToSearch(
+      underbustIndex,
+      underbustSpanArr
+    );
+
+    let bustIndex = getBustIndex(bust, underbustaArrayToSearch);
+
+    const underbustSize = getUnderBustName(underbustIndex, underbustNames);
+    const bustSize = getBustNames(bustIndex, bustNames);
+    const detectedNames = combineSizeName(underbustSize, bustSize);
+
+    return detectedNames;
+  }
+};
+
+const underbust = 70;
+const bust = 89;
 
 const detected = detectBraSizeName(underbust, bust);
 const detectedSmaller = detectSmallerSizeName(underbust, bust);
+const detectedBigger = detectBiggerSizeName(underbust, bust);
 
 console.log("smaller: " + detectedSmaller);
-console.log("stright: " + detected);
+console.log("straight: " + detected);
+console.log("bigger: " + detectedBigger);
 
 // const URL =
 //   "https://www.kontri.pl/pl/menu/biustonosze-100.html?filter_traits[12133]";
